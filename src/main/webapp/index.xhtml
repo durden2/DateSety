@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/xml/ns/javaee">
+<h:head>
+   <title>Java EE 6 Starter Application</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <h:outputStylesheet name="css/screen.css" />
+   <script type="text/javascript">
+    function handleDrop(event, ui) {
+        var droppedCar = ui.draggable;
+
+        droppedCar.fadeOut('fast');
+    }
+</script>
+</h:head>
+<h:body>
+   <div id="container">
+      <div id="content">
+         <h:form>
+            <p:growl id="msg" showDetail="true" escape="false" />
+            <h2>Trzęsienia ziemii</h2>
+            <p:pickList id="pickList" value="#{pickListViewEQ.cities}" var="cities" itemLabel="#{cities}" itemValue="#{cities}" />
+
+            <p:commandButton id="citySubmit" value="Submit" update="displayCities" oncomplete="PF('cityDialog').show()" style="margin-top:5px" />
+
+            <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="cityDialog">
+               <h:panelGrid id="displayCities" columns="2">
+                  <h:outputText value="Source: " style="font-weight:bold" />
+                  <ui:repeat value="#{pickListViewEQ.cities.source}" var="item">
+                     <h:outputText value="#{item}" style="margin-right:5px" />
+                  </ui:repeat>
+
+                  <h:outputText value="Target: " style="font-weight:bold" />
+                  <ui:repeat value="#{pickListViewEQ.cities.target}" var="item">
+                     <h:outputText value="#{item}" style="margin-right:5px" />
+                  </ui:repeat>
+               </h:panelGrid>
+            </p:dialog>
+
+         </h:form>
+
+          <h:form>
+              <p:growl id="msg" showDetail="true" escape="false" />
+              <h2>Zanieczyszczenie powietrza w Bochni</h2>
+              <p:pickList id="pickList" value="#{pickListViewPollution.cities}" var="cities" itemLabel="#{cities}" itemValue="#{cities}" />
+
+              <p:commandButton id="citySubmit" value="Submit" update="displayCities" oncomplete="PF('cityDialog').show()" style="margin-top:5px" />
+
+              <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="cityDialog">
+                  <h:panelGrid id="displayCities" columns="2">
+                      <h:outputText value="Source: " style="font-weight:bold" />
+                      <ui:repeat value="#{pickListViewPollution.cities.source}" var="item">
+                          <h:outputText value="#{item}" style="margin-right:5px" />
+                      </ui:repeat>
+
+                      <h:outputText value="Target: " style="font-weight:bold" />
+                      <ui:repeat value="#{pickListViewPollution.cities.target}" var="item">
+                          <h:outputText value="#{item}" style="margin-right:5px" />
+                      </ui:repeat>
+                  </h:panelGrid>
+              </p:dialog>
+
+          </h:form>
+
+
+          <!--
+
+         <h:form id="form">
+            <p:dataTable var="car" value="#{dataListView.cars1}">
+               <p:column headerText="Data">
+                  <h:outputText value="#{car.data}" />
+               </p:column>
+
+               <p:column headerText="Latitude">
+                  <h:outputText value="#{car.latitude}" />
+               </p:column>
+
+               <p:column headerText="Longitude">
+                  <h:outputText value="#{car.longitude}" />
+               </p:column>
+
+               <p:column headerText="Depth">
+                  <h:outputText value="#{car.depth}" />
+               </p:column>
+
+               <p:column headerText="Magnitude">
+                  <h:outputText value="#{car.magnitude}" />
+               </p:column>
+
+               <p:column headerText="Place">
+                  <h:outputText value="#{car.place}" />
+               </p:column>
+            </p:dataTable>
+         </h:form>-->
+      </div>
+      <div id="footer">
+
+      </div>
+   </div>
+</h:body>
+</html>
